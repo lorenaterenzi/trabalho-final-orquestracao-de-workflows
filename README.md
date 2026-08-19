@@ -3,12 +3,12 @@
 ## 1. Contexto e Descrição do Problema
 No ecossistema de ativos financeiros digitais, a alta volatilidade e o fluxo ininterrupto de dados exigem estruturas de ingestão capazes de capturar, tratar e persistir indicadores de mercado com baixa latência e alta confiabilidade. Aplicações analíticas e algoritmos de negociação dependem de visões históricas consistentes e consolidações em tempo real para tomada de decisão estratégica.
 
-Este projeto abrange a construção de uma esteira de dados (*data pipeline*) automatizada, resiliente a falhas de comunicação com APIs públicas e imune a inconsistências causadas por reexecuções (garantia de idempotência). A solução abstrai a complexidade da captura de cotações, executa higienização e padronização de schemas e disponibiliza os dados em um repositório relacional estruturado para consumo analítico.
+Este projeto abrange a construção de um pipeline de dados (*data pipeline*) automatizado, resiliente a falhas de comunicação com APIs públicas e imune a inconsistências causadas por reexecuções (garantia de idempotência). A solução abstrai a complexidade da captura de cotações, executa higienização e padronização de schemas e disponibiliza os dados em um repositório relacional estruturado para consumo analítico.
 
 ---
 
 ## 2. Arquitetura da Solução
-A arquitetura da solução adota o padrão de esteira containerizada e descentralizada, orquestrada pelo **Prefect 3.0** e persistida em banco de dados **PostgreSQL 15**:
+A arquitetura da solução adota o padrão de pipeline containerizado e descentralizado, orquestrado pelo **Prefect 3.0** e persistida em banco de dados **PostgreSQL 15**:
 
 ```mermaid
 graph TD
@@ -32,7 +32,7 @@ graph TD
     style R3 fill:#2c5282,stroke:#2b6cb0,stroke-width:1px,color:#fff
 ```
 
-### Componentes da Esteira:
+### Componentes do Pipeline:
 1. **Fonte de Dados (Ingestão):** Consumo de payloads JSON da API REST pública da CoinGecko `(/simple/price)`, capturando preços em USD, volume de negociação de 24 horas e variações percentuais dos ativos (``bitcoin``, ``ethereum``, ``solana``, ``cardano``).
 2. **Camada de Orquestração:** Utilização do Prefect 3.0 para gerenciamento de dependências, controle de estado do fluxo de trabalho, registro de logs em tempo real e reexecução automatizada em caso de exceções.
 3. **Camada de Processamento:** Manipulação vetorial via biblioteca ``pandas`` para conversão de tipos de dados (casting), rotulagem temporal (timestamping) e estruturação em dados tabulares.
