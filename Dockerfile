@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir \
-    prefect \
+    "pydantic>=2.7.0,<2.9.0" \
+    "pydantic-core<2.24.0" \
+    prefect==3.0.0 \
     requests \
     pandas \
     psycopg2-binary \
