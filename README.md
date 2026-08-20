@@ -72,4 +72,4 @@ Acesse a interface em http://localhost:4200.
 - **Idempotência:** A consistência do repositório final é assegurada pelo modelo de gravação híbrido. A gravação da tabela analítica de estado (``latest_crypto_prices``) utiliza a estratégia de sobrescrita atômica (``if_exists="replace"``), garantindo que múltiplas execuções do pipeline no mesmo intervalo temporal gerem exatamente o mesmo resultado final, sem duplicação de dados.
 
 ## Vídeo de Apresentação
-- **Link do Vídeo:** [INSERIR_LINK_AQUI]
+- **Link do Vídeo:** [Vídeo de Apresentação do Trabalho Final](https://youtu.be/zDjHBRmf-7g)
